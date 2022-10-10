@@ -1,6 +1,6 @@
 <?php
 
-namespace User\ComposerWork\app\models;
+namespace Application\App\models;
 
 class Contacts
 {

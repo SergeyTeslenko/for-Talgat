@@ -43,15 +43,16 @@ class Router
 
     private function getMethod(): string|null
     {
-        $expmethod = explode(':', $this->config[$this->exp]);
-        return $expmethod[1];
+//        return $expmethod[1];
 //        if ( empty($this->exp[1])) {
 //            $methodName = 'index';
 //        } else {
 //            $methodName = $this->exp[1];
 //        }
 //
-//        return $methodName;
+        $methodName= explode(':', $this->config[$this->exp]);
+       return $methodName[1];
+;
     }
 
     private function getClassName(): string
