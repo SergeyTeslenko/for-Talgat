@@ -13,7 +13,7 @@ class HomeController implements ControllerInterface
     {
         $obj = new Pages;
         var_dump($obj->getAll());
-        $path = 'View1';
+        $path = 'View';
         $data['people'] =  $obj->getAll();
         \View::generate($path,$data);
 
