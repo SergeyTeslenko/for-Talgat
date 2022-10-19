@@ -1,6 +1,7 @@
 <?php
 
 namespace Application;
+
 use Application\App\Controllers\ErrorController;
 
 
@@ -11,23 +12,23 @@ class Router
 
     public function __construct()
     {
-    $this->exp = substr($_SERVER['REQUEST_URI'], 1);
+        $this->exp = substr($_SERVER['REQUEST_URI'], 1);
 //        $this->exp = explode("/", $str);
- $this->config = include_once (__DIR__) . './app/config/config.php';
+        $this->config = require_once __DIR__ . './app/config/config.php';
 
     }
 
     public function run(): void
     {
-        var_dump(array_key_exists($this->exp, $this->config));
-        var_dump($this->exp);
 
-        if (array_key_exists($this->exp, $this->config)){
+
+        if (array_key_exists($this->exp, $this->config)) {
             $classPath = "Application\\App\\Controllers\\" . $this->getClassname();
-            $obj = new ErrorController();
+            $this->call($classPath, $this->getMethod());
 
-        }else {
-           $obj = new ErrorController();
+
+        } else {
+            $obj = new ErrorController();
             $this->call($this->exp, $this->getMethod());
         }
 
@@ -36,9 +37,9 @@ class Router
 
     private function call($controller, $method): void
     {
-        if (method_exists($controller, $method) && class_exists($controller)){
+        if (method_exists($controller, $method) && class_exists($controller)) {
             call_user_func_array([new $controller, $method], []);
-           exit();
+            exit();
         }
         call_user_func_array([new ErrorController, 'index'], ["Method {" . $method . "} does not exists in " . $controller]);
     }
@@ -64,10 +65,9 @@ class Router
 //        }
 //        return ucfirst($className);
 //    }
-      $exp = explode(':', $this->config[$this->exp]);
+        $exp = explode(':', $this->config[$this->exp]);
         return $exp[0];
     }
-
 
 
 }

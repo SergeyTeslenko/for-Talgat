@@ -1,11 +1,12 @@
 <?php
 return [
-    "" => "Home:index",
-    "home" => "Home:index",
-    "edit" => "Home:edit", // имя класса=> метод
-    "home/edit" => "Home:edit",
-    "admin" => "Admin:index",
-    "admin/home" => "Admin:index",
-    "admin/home/edit" => "Admin:edit"
+    "" => "HomeController:index",
+    "home" => "HomeController:index",
+    "edit" => "HomeController:edit", // имя класса=> метод
+    "home/edit" => "HomeController:edit",
+    "admin" => "AdminController:index",
+    "admin/home" => "AdminController:index",
+    "admin/home/edit" => "AdminController:edit",
+    "user" => "UsersController:edit",
 
 ];

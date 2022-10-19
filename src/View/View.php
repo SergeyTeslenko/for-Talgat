@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User</title>
-</head>
-<body>
-<h1>I am User</h1>
 <?php
-foreach ($people as $currentPeople) : ?>
-    <ul>
-        <?php foreach ($currentPeople as $user) : ?>
-            <li><?= print_r($currentPeople); ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endforeach; ?>
-</body>
-</html>
+
+namespace Application\App;
+
+use Exception;
+
+class View
+{
+    /**
+     * @throws Exception
+     */
+    public static function generate(string $path, array $data = []): void
+    {
+        $paths = require_once "config/path.php";
+        $filePath = $paths['views'] . $path . '.php';
+        extract($data);
+        if (file_exists($filePath)) {
+            include $filePath;
+            exit();
+        } else {
+            throw new \Exception('Templates ' . $filePath . ' absent');
+        }
+    }
+}

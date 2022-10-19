@@ -3,22 +3,19 @@
 namespace Application\App\Controllers;
 
 use Application\App\models\Pages;
+use Application\App\models\User as ModelUsers;
 
-use Application\App\View;
-use Exception;
-
-class HomeController implements ControllerInterface
+class UsersController
 {
-
     /**
      * @throws Exception
      */
     public function index()
     {
-        $obj = new Pages;
+        $obj = new ModelUsers();
         $data = [];
         $data['people'] = $obj->getAll();
-         View::generate('home', $data);
+        View::generate('home', $data);
     }
 
     public function home()
@@ -28,7 +25,6 @@ class HomeController implements ControllerInterface
 
     public function edit()
     {
-        echo "i am ==> HOME/->EDIT<- <==";
+        echo "i am ==> UserController <==";
     }
-
 }
